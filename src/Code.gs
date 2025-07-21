@@ -63,16 +63,15 @@ function itemToObject(item) {
   
   getKeysRaw.map(function(getKey) {    
     var propName = getKey[3].toLowerCase() + getKey.substr(4);
-    
+
     // Image data, choices, and type come in the form of objects / enums
-    if (["image", "choices", "type", "alignment"].indexOf(propName) != -1) {return};
-    
+    if (["image", "choices", "type", "alignment"].indexOf(propName) != -1) { return; }
+
     // Skip feedback-related keys
-    if ("getFeedbackForIncorrect".equals(getKey) || "getFeedbackForCorrect".equals(getKey)
-      || "getGeneralFeedback".equals(getKey)) {return};
-    
+    if (getKey === "getFeedbackForIncorrect" || getKey === "getFeedbackForCorrect"
+      || getKey === "getGeneralFeedback") { return; }
+
     var propValue = typedItem[getKey]();
-    
     data[propName] = propValue;
   });
   
